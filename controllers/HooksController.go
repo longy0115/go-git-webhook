@@ -8,7 +8,7 @@ type HooksController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
+func (c *HooksController) Get() {
 	c.Data["Website"] = "ucat.me"
 	c.Data["Email"] = "longy0115@gmail.com"
 	c.TplName = "index.tpl"
