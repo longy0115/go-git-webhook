@@ -14,7 +14,8 @@ type HooksController struct {
 }
 
 func (this *HooksController) Get() {
-	err, out, errout := Shellout("ls -ltr")
+
+	err, out, errout := Shellout("cd /home/Go/golang/src/webhooks && git pull origin master")
 	if err != nil {
 		log.Printf("error: %v\n", err)
 	}
