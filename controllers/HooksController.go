@@ -26,6 +26,19 @@ func (this *HooksController) Get() {
 	this.Ctx.WriteString("succ----")
 }
 
+func (this *HooksController) Post() {
+
+	err, out, errout := Shellout("cd /home/Go/golang/src/webhooks && git pull origin master")
+	if err != nil {
+		log.Printf("error: %v\n", err)
+	}
+	this.Ctx.WriteString("--- stdout ---")
+	this.Ctx.WriteString(out)
+	this.Ctx.WriteString("--- stderr ---")
+	this.Ctx.WriteString(errout)
+	this.Ctx.WriteString("succ----")
+}
+
 func Shellout(command string) (error, string, string) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
