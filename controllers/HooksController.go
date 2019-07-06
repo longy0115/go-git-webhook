@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/astaxie/beego"
 	"log"
 	"os/exec"
@@ -14,15 +13,16 @@ type HooksController struct {
 	beego.Controller
 }
 
-func (c *HooksController) Get() {
+func (this *HooksController) Get() {
 	err, out, errout := Shellout("ls -ltr")
 	if err != nil {
 		log.Printf("error: %v\n", err)
 	}
-	fmt.Println("--- stdout ---")
-	fmt.Println(out)
-	fmt.Println("--- stderr ---")
-	fmt.Println(errout)
+	this.Ctx.WriteString("--- stdout ---")
+	this.Ctx.WriteString(out)
+	this.Ctx.WriteString("--- stderr ---")
+	this.Ctx.WriteString(errout)
+	this.Ctx.WriteString("succ----")
 }
 
 func Shellout(command string) (error, string, string) {
